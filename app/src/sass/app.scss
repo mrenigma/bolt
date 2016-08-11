@@ -170,7 +170,7 @@ $navbar-padding-horizontal: 0;
     @import "structure/edit_content_field-structure.scss";
 
     /**** Visual */
-    //@import "visual/colors.scss";
+    @import "visual/colors.scss";
     @import "visual/bolt-visual.scss";
     @import "visual/aside-visual.scss";
     @import "visual/dashboard-visual.scss";
