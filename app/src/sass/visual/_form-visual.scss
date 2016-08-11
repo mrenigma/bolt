@@ -1,0 +1,39 @@
+.ui-sortable-helper {
+    border: 1px solid $chalice;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+    opacity: 0.5;
+}
+
+.ui-sortable-placeholder {
+    border: 1px dashed $chalice;
+    opacity: 0.5;
+}
+
+#filtertabs {
+    border-bottom: 1px solid darken($silver, 10);
+
+    a {
+        color: $dove;
+        background-color: $alto;
+        border: 1px solid darken($silver, 10);
+
+        &:hover {
+            color: $dove;
+            background-color: $white;
+        }
+    }
+
+    li {
+
+        &.active {
+
+            a {
+                background-color: $white;
+                border: 1px solid darken($silver, 20);
+                border-bottom: 1px solid $white;
+                color: $cello;
+                font-weight: 700;
+            }
+        }
+    }
+}

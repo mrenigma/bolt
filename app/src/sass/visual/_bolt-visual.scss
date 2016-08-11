@@ -1,0 +1,49 @@
+body {
+    background: $white;
+    color: $dove;
+}
+
+/**
+ * Extensions screen
+ */
+
+div.extension {
+    border: 1px solid $alto;
+    background: $white;
+    border-radius: 2px;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, .3);
+}
+
+/**
+ * Fancy, simple blockquotes
+ */
+blockquote.quote {
+    color: $chalice;
+}
+
+blockquote.quote cite {
+    color: $chalice;
+}
+
+/**
+ *
+ * TODO: Everything below is copy/pasted from bolt.css, and needs to be reworked into the correct locations.
+ *
+ */
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+    background: transparent;
+}
+
+table.dataTable thead .sorting:after {
+    color: rgba(50, 50, 50, .5);
+}
+
+.show-grid [class^="col-"] {
+    border: 1px solid $alto;
+    background-color: $silver !important;
+}

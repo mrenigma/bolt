@@ -1,0 +1,26 @@
+#navpage-primary .omnisearch {
+    width: 280px;
+}
+
+#navpage-secondary .omnisearch {
+    width: 180px;
+}
+
+.omnisearch {
+    // Result.
+    .select2-results__option {
+        div {
+            font-weight: bold;
+
+            & span {
+                font-weight: normal;
+            }
+        }
+
+        small {
+            display: block;
+            font-size: smaller;
+        }
+    }
+
+}

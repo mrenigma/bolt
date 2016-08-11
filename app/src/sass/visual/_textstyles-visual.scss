@@ -1,0 +1,47 @@
+a {
+    color: $cello;
+}
+
+a:link {
+    color: $cello;
+}
+
+a:visited {
+    color: $cello;
+}
+
+a:focus,
+a:hover,
+a:active {
+    color: lighten($cello, 20);
+}
+
+tt, code {
+    color: $dove;
+    background-color: $concrete
+}
+
+pre {
+    background-color: $concrete
+    color: $dove;
+}
+
+h1 span {
+    color: $dove;
+}
+
+.status-timed {
+    color: $meteor;
+}
+
+.status-published {
+    color: $limeade;
+}
+
+.status-held {
+    color: $milano;
+}
+
+.status-draft {
+    color: $shipe-cove;
+}

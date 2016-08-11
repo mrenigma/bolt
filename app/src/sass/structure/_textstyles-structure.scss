@@ -1,0 +1,58 @@
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0.5em 0;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+h1 {
+    font-size: 30px;
+    line-height: 36px;
+}
+
+h2 {
+    font-size: 26px;
+    line-height: 31px;
+}
+
+a {
+    font-weight: bold;
+}
+
+strong, b {
+    font-weight: 600;
+    line-height: normal;
+}
+
+em, i {
+    font-style: italic;
+}
+
+tt, code, .source-code {
+    font-family: $fonts-family-monospace;
+}
+
+tt, code {
+    padding: 1px 2px;
+    border: 0;
+    white-space: pre;
+}
+
+pre {
+    padding: 2px 4px;
+    font-family: $fonts-family-monospace;
+}
+
+small {
+    font-size: 85%;
+    line-height: 85%;
+}
+
+h1 span {
+    float: right;
+    font-size: 50%;
+    margin: 0.45em 0 -0.45em -0;
+}

@@ -1,0 +1,20 @@
+aside {
+
+  //  section {
+  //      border: 1px solid $panel-default-border;
+  //      background-color: #F2F2F2;
+  //  }
+
+  //  section h2 {  // wordt section wel gebruikt ?!?!?!
+  //      color: #333;
+  //  }
+
+    .panel {
+        border-color:  $concrete;
+    }
+
+    .panel-body > ul li small {
+        color: $dove;
+    }
+
+}

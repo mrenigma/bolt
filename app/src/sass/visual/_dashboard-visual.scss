@@ -1,0 +1,48 @@
+.morelink {
+    color: $cello;
+    //text-shadow: none;
+
+    &:visited {
+        color: $cello;
+    }
+
+}
+
+.dashboardlisting {
+    box-shadow:  0px 1px 0px -2px rgba(0, 0, 0, 0.3);
+
+    th,
+    td {
+        border-bottom: 1px solid $alto;
+    }
+
+    th {
+        background-color: $concrete;
+        color: $dove;
+        border-bottom: 1px solid $alto;
+    }
+
+    th h2 {
+        color: $mine;
+    }
+
+    tr {
+        background-color: $white;
+    }
+
+    td {
+        border-color: $light-border;
+    }
+
+    td.id,
+    td.username,
+    td.actions,
+    td.listthumb  {
+        color: $mine;
+    }
+
+    td.excerpt span {
+        color: $mine;
+    }
+
+}

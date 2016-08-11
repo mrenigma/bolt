@@ -83,20 +83,20 @@ $navbar-padding-horizontal: 0;
 /**
  * Some modules
  */
-@import "modules/fonts";
-@import "nav/nav";
-@import "modules/footer";
-@import "modules/textstyles";
-@import "modules/popover";
-@import "modules/dashboard";
-@import "modules/aside";
-@import "modules/forms";
-@import "modules/liveeditor";
-@import "modules/login";
-@import "modules/extend";
-@import "modules/omnisearch";
-@import "modules/widgets";
-@import "modules/files";
+//@import "modules/fonts";
+//@import "nav/nav";
+//@import "modules/footer";
+//@import "modules/textstyles";
+//@import "modules/popover";
+//@import "modules/dashboard";
+//@import "modules/aside";
+//@import "modules/forms";
+//@import "modules/liveeditor";
+//@import "modules/login";
+//@import "modules/extend";
+//@import "modules/omnisearch";
+//@import "modules/widgets";
+//@import "modules/files";
 
 /**
  * Bolt User Interface Components.
@@ -113,9 +113,10 @@ $navbar-padding-horizontal: 0;
 /**
  * Editcontent.
  */
-@import "editcontent/legacy";
-@import "editcontent/fieldset";
-@import "editcontent/field";
+//@import "editcontent/legacy";
+//@import "editcontent/fieldset";
+//@import "editcontent/field";
+
 //
 @import "editcontent/fields/categories";
 @import "editcontent/fields/checkbox";
@@ -144,4 +145,41 @@ $navbar-padding-horizontal: 0;
 /**
  * The leftover styles.
  */
-@import "modules/bolt";
+//@import "modules/bolt";
+
+
+/***** Refactored parts. */
+
+    /**** Structure */
+    @import "structure/bolt-structure.scss";
+    @import "structure/extends-structure.scss";
+    @import "structure/aside-structure.scss";
+    @import "structure/dashboard-structure.scss";
+    @import "structure/footer-structure.scss";
+    @import "structure/textstyles-structure.scss";
+    @import "structure/form-structure.scss";
+    @import "structure/login-structure.scss";
+    @import "structure/pop-over-structure.scss";
+    @import "structure/live-editor-sctructure.scss";
+    @import "structure/omnisearch-stucture.scss";
+    @import "structure/widgets-structure.scss";
+    @import "structure/fonts-structure.scss";
+    @import "structure/nav-structure.scss";
+    @import "structure/edit_content_fieldset-structure.scss";
+    @import "structure/edit_content_field-structure.scss";
+
+    /**** Visual */
+    @import "visual/colors.scss";
+    @import "visual/bolt-visual.scss";
+    @import "visual/aside-visual.scss";
+    @import "visual/dashboard-visual.scss";
+    @import "visual/textstyles-visual.scss";
+    @import "visual/form-visual.scss";
+    @import "visual/login-visual.scss";
+    @import "visual/pop-over-visual.scss";
+    @import "visual/live-editor-visual.scss";
+    @import "visual/omnisearch-visual.scss";
+    @import "visual/nav-visual.scss";
+    @import "visual/edit_content_fieldset-visual.scss";
+    @import "visual/edit_content_field-visual.scss";
+    @import "visual/footer-visual.scss";

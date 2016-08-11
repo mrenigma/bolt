@@ -1,0 +1,201 @@
+/** Primary */
+
+/* Top Right Navigation Dropdown Styles */
+.navbar-top-links {
+
+    .dropdown-menu {
+
+        & > li a {
+            color: $dove;
+        }
+
+        button:hover {
+            background-color: $alto;
+            color: $cello;
+        }
+
+    }
+
+}
+
+.navbar-static-top .nav > li {
+    & > a {
+        color: $concrete;
+    }
+    &:hover > a,
+    :focus {
+        color: $white;
+        background: $shipe-cove;
+    }
+}
+
+.nav .open>a,
+.nav .open>a:hover,
+.nav .open>a:focus {
+    background-color: $shipe-cove;
+
+}
+
+// Media Query tweak!
+//@media (max-width: 979px) {
+
+//    .navbar-collapse .navbar > li > a,
+//    .navbar-collapse .dropdown-menu a {
+//        color: #f00 !important;
+//    }
+//}
+
+/** Seconadary */
+
+
+/*
+ * We have 4 states of the secondary navigation:
+ * Small mode: (triggered by menu-'hamburger' ):
+ * - Hidden (#navpage-wrapper.nav-secondary-opened not set)
+ * - Shown (#navpage-wrapper.nav-secondary-opened set)
+ * Large mode (triggered by expand/collapse button):
+ * - Expanded (#navpage-wrapper.nav-secondary-collapsed not set)
+ * - Collapsed (#navpage-wrapper.nav-secondary-collapsed set)
+ */
+
+/**** MODE: Hidden ****/
+
+#navpage-secondary {
+    box-shadow: -5px 0 0 rgba(0, 0, 0, 0.15) inset;
+    background: $tuna;
+    color: $alto;
+
+    ul.submenu {
+        background: lighten($tuna, 10);
+
+        & > li.subdivider {
+            border-top: 1px dashed lighten($tuna, 20);
+        }
+
+        a {
+            color: $alto;
+        }
+    }
+}
+
+/**** MODE: Collapsed ****/
+
+@include respond-to(medium-screens) {
+    #navpage-wrapper.nav-secondary-collapsed {
+
+        #navpage-secondary {
+            box-shadow: -5px 0px 0px rgba(0, 0, 0, 0.2) inset;
+            color: $alto;
+
+            .nav > li {
+                a {
+                    color: $alto;
+                }
+            }
+        }
+
+    }
+
+    #navpage-wrapper.nav-secondary-collapsed-hoverable {
+
+        #navpage-secondary:hover {
+            box-shadow: 8px 0px 0px rgba(0, 0, 0, 0.2);
+            color: $alto;
+
+            .nav > li {
+                a {
+                    color: $alto;
+                }
+            }
+        }
+    }
+}
+
+/* --------------- */
+
+#navpage-secondary .nav > li {
+    & > a,
+    & > form,
+    & > em {
+        color: $alto;
+    }
+
+    a.menu-pop:before {
+        color: darken($sidebarlink, 25);
+    }
+
+    &:hover > a,
+    a:focus {
+        color: $white;
+        background: lighten(desaturate($cello, 30), 6);
+        i.icon {
+            background: $white;
+        }
+    }
+
+    & > em {
+        color: lighten($cello, 50);
+
+        i.icon {
+            background: none;
+            color: lighten($cello, 50);
+        }
+    }
+
+    &.active > a {
+        color: $white;
+        background: lighten(desaturate($cello, 20), 12);
+        i.icon {
+            background: $white;
+        }
+    }
+
+    &.search {
+
+        form {
+            box-shadow: none;
+        }
+
+        i.icon {
+            background: none;
+            color: $silver;
+        }
+
+    }
+
+    i.icon {
+        background: $silver;
+        border-radius: 3px;
+        color: $mine;
+    }
+
+    .popover-content {
+        color:$mine;
+
+        a {
+            $indent: 32px;
+            background: transparent;
+            color: $dove;
+        }
+
+        a:hover {
+            color: $cello;
+            background-color: $alto;
+            text-decoration: none;
+        }
+
+    }
+}
+
+/**** Collapse/expand buttons ****/
+
+/* Never show mall mode */
+
+.nav-secondary-collapse,
+.nav-secondary-expand {
+
+    i.icon {
+        background: none !important;
+        color: $silver !important;
+    }
+}

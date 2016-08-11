@@ -1,0 +1,113 @@
+/*** Styles for all Fieldsets ***/
+
+fieldset[class*=' bolt-field-'],
+fieldset[class^='bolt-field-'] {
+    // Move standard boostrap form-group margins from here to data-bolt-fieldset to position prefix/postfix
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    /// Label
+    label,
+    .control-label {
+        font-weight: normal;
+        font-size: 13px;
+    }
+
+    // Main label
+    label.main {
+        font-weight: normal;
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+
+    // Info popup
+    .info-pop {
+        cursor: help;
+        padding-left: 4px;
+    }
+}
+
+/*** Styles for all filelists/imagelists ***/
+
+fieldset.bolt-field-filelist,
+fieldset.bolt-field-imagelist {
+    // Empty placeholder
+    p {
+        padding: 8px;
+        margin: 0;
+    }
+
+    img {
+        padding-right: 6px;
+    }
+
+    .buttons {
+        float: left;
+        padding: 7px 8px;
+    }
+
+    .list {
+        padding: 0;
+        width: 100%;
+    }
+
+    .item {
+        min-height: 48px;
+        margin: 6px;
+        padding: 4px 6px;
+        cursor: pointer;
+        overflow: hidden;
+
+        &.ui-sortable-helper {
+            cursor: ns-resize;
+        }
+
+        * {
+            float: left;
+        }
+
+        input {
+            padding: 1px 0 0 5px;
+            width: 65%;
+            border: 0;
+
+            @include respond-to(medium-screens) {
+                width: 83%;
+            }
+        }
+
+        // Remove button
+        a.remove {
+            padding: 5px;
+            cursor: pointer;
+            float: right;
+        }
+
+        // File description
+        span.desc {
+            font-size: 90%;
+            padding: 3px 0 0 4px;
+        }
+
+        //
+        .icon {
+            height: 37px;
+            width: 32px;
+            overflow: hidden;
+            text-align: center;
+            margin-right: 6px;
+            margin-top: 3px;
+
+            i {
+                font-size: 180%;
+                float: none;
+            }
+
+            span {
+                display: block;
+                float: none;
+                font-size: 85%;
+            }
+        }
+    }
+}

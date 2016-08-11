@@ -1,0 +1,154 @@
+html {
+    height: 100%;
+}
+
+body {
+    font-size: 13px;
+    min-height: 100%;
+}
+
+body.popup {
+    padding: 6px 12px 0;
+}
+
+.table-changelog-details th {
+    width: 40%;
+}
+
+.table-changelog-details th:first-child {
+    width: 20%;
+}
+
+.table-changelog-details td {
+    vertical-align: top;
+}
+
+/**
+ * Extensions screen
+ */
+
+div.extension {
+    border-radius: 2px;
+    padding: 0 10px 8px;
+    margin: 0 10px 8px 0;
+}
+
+div.extension h3 {
+    font-size: 17px;
+    line-height: 28px;
+    margin: 4px 0 0;
+}
+
+div.extension p {
+    margin: 0 0 4px;
+    line-height: 16px;
+}
+
+/**
+ * Fancy, simple blockquotes
+ */
+blockquote.quote {
+    border: 0;
+    margin: 15px 0px;
+    font-size: 21px;
+    line-height: 26px;
+    font-style: italic;
+    font-family: "Times New Roman", Georgia;
+}
+
+blockquote.quote cite {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 18px;
+    font-style: normal;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+/**
+ *
+ * TODO: Everything below is copy/pasted from bolt.css, and needs to be reworked into the correct locations.
+ *
+ */
+
+
+/* Login Page */
+
+.login-panel {
+    margin-top: 25%;
+}
+
+/* Flot Chart Containers */
+
+.flot-chart {
+    display: block;
+    height: 400px;
+}
+
+.flot-chart-content {
+    width: 100%;
+    height: 100%;
+}
+
+/* DataTables Overrides */
+
+table.dataTable thead .sorting_asc:after {
+    content: "\f0de";
+    float: right;
+    font-family: fontawesome;
+}
+
+table.dataTable thead .sorting_desc:after {
+    content: "\f0dd";
+    float: right;
+    font-family: fontawesome;
+}
+
+table.dataTable thead .sorting:after {
+    content: "\f0dc";
+    float: right;
+    font-family: fontawesome;
+}
+
+.show-grid [class^="col-"] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.show-grid {
+    margin: 15px 0;
+}
+
+.login .logo {
+    margin-top:100px;
+    width: 179px;
+    height: auto;
+}
+
+.dropdown-menu .nav-header {
+    clear: both;
+    float: none;
+    padding: 3px 12px;
+}
+
+form#filescreenuploader {
+    div {
+     // float: left;
+        margin-right: 6px;
+     // margin-top: 6px;
+        display: inline;
+     // width: 100%;
+    }
+}
+
+.relatedfiles {
+    float: right;
+}
+
+.alert {
+    label {
+        display: inline;
+        cursor: pointer;
+        padding-right: 4px;
+    }
+}

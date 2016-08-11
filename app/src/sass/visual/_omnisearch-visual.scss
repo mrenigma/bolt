@@ -1,0 +1,20 @@
+.omnisearch {
+    // Result.
+    .select2-results__option {
+
+        small {
+            color: $chalice;
+        }
+    }
+
+    // Highlighted result.
+    .select2-results__option--highlighted small {
+        color : $white; // better contrast.
+    }
+
+    // Input field.
+    .select2-search__field {
+        color: $black !important;
+        background: $white !important;
+    }
+}

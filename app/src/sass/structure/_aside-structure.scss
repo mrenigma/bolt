@@ -1,0 +1,73 @@
+aside {
+
+  //  section {
+  //      padding: 0 10px 10px;
+  //      margin-bottom: 20px;
+  //  }
+
+  //  section h2 {
+  //      font-size: 17px;
+  //      line-height: 21px;
+  //      margin: 10px 0 6px 0;
+  //  }
+
+  //  section p { // wordt section wel gebruikt ?!?!?!
+  //      font-size: 12px;
+  //      line-height: 18px;
+  //      margin: 4px 0;
+  //  }
+
+    .morelink {                 // Niet gebruikt in aside?!?!
+        font-weight: normal;
+        line-height: 1em;
+        position: static;
+    }
+
+    .panel {
+        border-radius: 0;
+     // margin-left: 12px;
+    }
+
+    .panel-body > ul {
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0.7em;
+        text-indent: -0.7em;
+    }
+
+    .panel-body > ul li:before {
+        content: "- ";
+    }
+
+    .panel-body > ul li {
+        line-height: 18px;
+        margin-bottom: 4px;
+    }
+
+    .btn-group {
+        margin: 0 6px 12px 0;
+    }
+
+    .dropdown-menu .btn-link {
+      display: block;
+      text-align: left;
+      margin-bottom: 4px;
+    }
+
+    div.description {
+        margin: 12px 0 0;
+        line-height: 18px;
+    }
+
+    code {
+        letter-spacing: -0.5px;
+    }
+}
+
+@media (max-width: 979px) {
+
+    aside .panel {
+        margin-left: 0;
+    }
+
+}

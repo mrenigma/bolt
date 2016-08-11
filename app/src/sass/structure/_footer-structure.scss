@@ -1,0 +1,18 @@
+footer  {              // lijkt erop dat veel niet meer gebruikt wordt. --> checken
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 4px 10px;
+    z-index: $zindex-veryhigh + 4;
+}
+
+.bolt-footer-mini  {
+    border-top: 0;
+    width: $nav-secondary-large-width;
+    font-size: 90%;
+    text-align: center;
+}
+
+.bolt-footer-hidden {
+    display: none;
+}

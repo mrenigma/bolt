@@ -1,0 +1,18 @@
+footer  {
+    border-top: 1px solid $alto;
+    background-color: $alto;
+    color: $chalice;
+}
+
+.bolt-footer-mini  {
+    background: darken($tuna, 5);
+    color: $silver;
+
+    a {
+        color: $silver;
+    }
+}
+
+.bolt-footer-hidden {
+    display: none;
+}
