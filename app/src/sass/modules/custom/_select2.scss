@@ -63,6 +63,9 @@
         border-radius: 0px;
         border-color: $alto;
     }
+    .select2-selection__choice.ui-sortable-helper {
+        cursor:move;
+    }
 
     .select2-drop {
         border-radius: 0px;
