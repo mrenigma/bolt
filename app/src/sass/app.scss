@@ -30,14 +30,14 @@ $navbar-padding-horizontal: 0;
 @import "bootstrap/buttons";
 
 // Components.
-@import "bootstrap/component-animations";
+// @import "bootstrap/component-animations"; Turned of 20-09-2016
 // @import "bootstrap/glyphicons";
 @import "bootstrap/dropdowns";
 @import "bootstrap/button-groups";
 @import "bootstrap/input-groups";
 @import "bootstrap/navs";
 @import "bootstrap/navbar";
-@import "bootstrap/breadcrumbs";
+// @import "bootstrap/breadcrumbs"; Turned of 20-09-2016
 @import "bootstrap/pagination";
 @import "bootstrap/pager";
 @import "bootstrap/labels";
@@ -45,11 +45,11 @@ $navbar-padding-horizontal: 0;
 // @import "bootstrap/jumbotron";
 // @import "bootstrap/thumbnails";
 @import "bootstrap/alerts";
-@import "bootstrap/progress-bars";
+// @import "bootstrap/progress-bars"; Turned of 20-09-2016
 @import "bootstrap/media";
 @import "bootstrap/list-group";
 @import "bootstrap/panels";
-@import "bootstrap/wells";
+// @import "bootstrap/wells"; Turned of 20-09-2016
 @import "bootstrap/close";
 
 // Components w/ JavaScript.
@@ -70,7 +70,8 @@ $navbar-padding-horizontal: 0;
 /**
  * Base variables, mixins and helpers.
  */
-@import "base";
+@import "base-visual";
+@import "base-structure";
 
 /**
  * Override bootstrap defaults.
@@ -169,7 +170,7 @@ $navbar-padding-horizontal: 0;
     @import "structure/edit_content_field-structure.scss";
 
     /**** Visual */
-    @import "visual/colors.scss";
+    //@import "visual/colors.scss";
     @import "visual/bolt-visual.scss";
     @import "visual/aside-visual.scss";
     @import "visual/dashboard-visual.scss";

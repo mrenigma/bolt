@@ -1,0 +1,146 @@
+// Color scheme for Bolt back-end
+
+
+// Black and white
+
+$black: #000000;
+$white: #FFFFFF;
+
+// Grey's
+
+$concrete: #F2F2F2;     // Light
+$alto: #DDDDDD;         //  |
+$silver: #C7C7C7;       //  |
+$chalice: #9D9D9D;      //  |
+$dove: #737373;         //  |
+$mine: #262626;         // Dark
+
+// Greens
+
+$zanah: #DFF0DB;        // light
+$limeade: #7FA800;      // Middle
+$green-leaf: #42710C;   // Dark
+
+// Blue's
+
+$link-water: #D9EDF7;   // Light
+$shipe-cove: #7B9DB8;   // Middle
+$cello: #204460;        // Dark     -- Used for header
+$tuna: #33363E;         // Dark     -- Used for navigation
+
+// Red's
+
+$bizarre: #F2DEDE;      // Light
+$milano: #CA2300;       // Middle
+$tamarillo: #AA1010;    // Dark
+
+// Orange
+
+$sandy: #F0AD4E;        // Light
+$carrot: #EC971F;       // Middle
+$meteor: #D58512;       // Dark
+
+// Yellow
+
+$pearl: #FCF8E3;        // Light
+$givry: #F7ECB5;        // Middle
+
+// Brown
+
+$potters : #8A6D3B;
+
+
+// Defining color variables
+
+$boltblue: $cello;
+$boltbluedarker: darken($boltblue, 5);
+$boltbluelighter: lighten($boltblue, 5);
+
+$basebgcolour: $white;
+$bodytextcolour: $mine;
+
+//$lightgrey: $alto;
+$light-border: $silver;
+
+// The color of <hr> lines.
+//$hr-border: $alto;
+
+//$linkmain: lighten(saturate($boltblue, 50), 4);
+//$linkvisited: $linkmain;
+//$linkactive: lighten(saturate($boltblue, 50), 10);
+
+// Primary button.
+$btn-primary-color: $white;
+$btn-primary-bg: $limeade; // Or perhaps a nice dark blue: #1d4268;
+$btn-primary-border: darken($btn-primary-bg, 4%);
+
+// Secondary button.
+$btn-secondary-bg: $cello;
+$btn-secondary-border: darken($btn-secondary-bg, 4%);
+
+// Tertiary button.
+$btn-tertiary-bg: desaturate(lighten($cello, 20), 12);
+$btn-tertiary-border: darken($btn-tertiary-bg, 4%);
+
+// Default button.
+$btn-default-color: $dove;
+$btn-default-bg: $concrete;
+$btn-default-border: darken($btn-default-bg, 4%);
+
+$btn-danger-color: $white;
+$btn-danger-bg: $tamarillo;
+$btn-danger-border: darken($btn-danger-bg, 4%);
+
+$btn-silent-danger-color: $dove;
+$btn-silent-danger-bg: $concrete;
+$btn-silent-danger-border: darken($btn-danger-bg, 4%);
+
+// Special BOLT button.
+$btn-bolt-color: $white;
+$btn-bolt-bg: $boltblue;
+$btn-bolt-border: darken($btn-bolt-bg, 6%);
+
+// Text-links in dropdowns and pop-overs.
+//$dropdown-link-color: $alto;
+//$dropdown-link-hover-color: $boltbluedarker;
+//$dropdown-link-hover-bg: $alto;
+
+// Sidebar panel headings.
+//$panel-default-heading-bg: #DDD;
+//$panel-default-border: $light-border;
+//$panel-border-radius: 0;
+
+// Table border color: mostly used for the contenttype 'overviews'
+//$table-border-color: #f00;
+//$table-bg-accent: #F6F6F9;
+
+// Pagination.
+//$pagination-color: lighten(desaturate($boltblue, 35), 6);
+//$pagination-active-bg: lighten(desaturate($boltblue, 35), 6);
+//$pagination-active-border: lighten(desaturate($boltblue, 35), 3);
+
+// Line-heights for headings. Also influences margin at top and bottom of headings.
+$headings-line-height: 1.5;
+
+$nav-tabs-border-color: $btn-tertiary-bg;
+$nav-tabs-active-link-hover-border-color: $nav-tabs-border-color;
+$nav-tabs-bg: desaturate(lighten($boltblue, 50%), 30);
+
+
+// The color of the tabs, in the 'edit content' screen.
+//$filtertabs: mix($basebgcolour, $btn-tertiary-bg, 70);
+//$filtertab-color: darken($filtertabs, 40);
+//$filtertab-active-color: $dove;
+
+/**
+ * Colors in _base.scss.
+ */
+$sidebarbackground: $tuna;
+//$sidebartextcolour: $alto;
+$sidebartextcolourcollapsed: $silver;
+
+$sidebarlink: $alto;
+$sidebarlinkhover: $white;
+$sidebarlinkactive: $white;
+$sidebarbackgroundactive: lighten(desaturate($boltblue, 20), 12);
+$sidebarbackgroundhover: lighten(desaturate($boltblue, 30), 6);

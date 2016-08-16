@@ -1,7 +1,7 @@
 /* Overrides for CodeMirror */
 
 .CodeMirror {
-    border: 1px solid #DDD !important;
+    border: 1px solid $alto !important;
     font-size: 14px;
     line-height: 1em;
     font-family: $fonts-family-monospace;
@@ -9,12 +9,12 @@
 }
 
 .CodeMirror-scroll {
-    background-color: #FFF;
+    background-color: $white;
 }
 
 .CodeMirror-gutter {
-    background-color: #F2F2F2 !important;
-    border-right: 1px solid #CCC !important;
+    background-color: $concrete !important;
+    border-right: 1px solid $silver !important;
 }
 
 .cm-tab:after {
@@ -24,7 +24,7 @@
     position: relative;
     overflow: visible;
     left: -1.4em;
-    color: #aaa;
+    color: $silver;
 }
 
 /* Codemirror folding */

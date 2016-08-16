@@ -3,31 +3,31 @@
     /*** General ***/
 
     small {
-        color: #666;
+        color: $dove;
     }
 
     input,
     select,
     textarea {
         border-radius: 2px;
-        border-color: #CCC;
+        border-color: $silver;
     }
 
     .error {
-        border-color: #888;
-        color: $state-danger-text;
-        background: $alert-danger-bg;
+        border-color: darken($tamarillo, 10);
+        color: $white;
+        background: $tamarillo;
     }
 
     .cke_error {
-        border-color: $state-danger-text;
+        border-color: darken($tamarillo, 10);
     }
 
     /*** Dropzone ***/
 
     .dropzone.hover,
     .dropzone.in {
-        background: #DEF;
+        background: $link-water;
 
         & * {
             opacity: 0.7;
@@ -38,22 +38,22 @@
         overflow: hidden;
 
         img {
-            border: 1px solid #BBB;
+            border: 1px solid $alto;
         }
     }
 
     /*** Input: Textarea ***/
 
     textarea {
-        color: #444;
+        color: $dove;
     }
 
     /*** Input: Markdown ***/
 
     .uk-htmleditor-navbar {
-        border-top: 1px solid #CCC;
-        border-left: 1px solid #CCC;
-        border-right: 1px solid #CCC;
+        border-top: 1px solid $alto;
+        border-left: 1px solid $alto;
+        border-right: 1px solid $alto;
     }
 
 }

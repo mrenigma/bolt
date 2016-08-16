@@ -6,12 +6,12 @@
 
 .cke_chrome {
     display: block;
-    border: 1px solid #DDD !important;
+    border: 1px solid $alto !important;
     padding: 0;
 }
 
 .cke_top {
-    background-color: #EEE !important;
+    background-color: $alto !important;
     padding-bottom: 4px;
 }
 
@@ -30,29 +30,29 @@
 }
 
 .cke_toolgroup, .cke_combo_button {
-    border-color: #E7E7E7 !important;
+    border-color: $silver !important;
     margin: 3px !important;
 }
 
 .cke_combo_text, .cke_button_label {
-    color: #666 !important;
+    color: $chalice !important;
 }
 
 .cke_button_on {
     background-image: none !important;
-    background-color: #E7E7E7 !important;
+    background-color: $silver !important;
 }
 
 .cke_contents textarea {
     width: 99% !important;
     max-width: 100% !important;
     padding: 8px 8px;
-    background-color: #EEE;
-    color: #666 !important;
+    background-color: $alto;
+    color: $chalice !important;
 }
 
 .cke_maximized {
-    background-color: #E7E7E7 !important;
+    background-color: $silver !important;
 }
 
 .cke_maximized .cke_contents {
@@ -63,11 +63,11 @@
     max-width: 900px !important;
     max-width: 900px !important;
     position: relative !important;
-    border-left: 1px solid #CCC;
-    border-right: 1px solid #CCC;
+    border-left: 1px solid $silver;
+    border-right: 1px solid $silver;
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
 }
 
 .cke_toolbar_separator {
-    background-color: #BBB !important;
+    background-color: $alto !important;
 }

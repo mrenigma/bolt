@@ -9,10 +9,10 @@
 
     // Make selection-arrow act more like buttons.
     .select2-selection__arrow {
-        border-left: 1px solid #eee;
+        border-left: 1px solid $alto;
 
         &:hover {
-            background: #f0f0f0;
+            background: $white;
         }
     }
 
@@ -23,8 +23,8 @@
 
     // The selected item of a multi select.
     .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background-color: #f4f4f4;
-        border: 1px solid #ddd;
+        background-color: $concrete;
+        border: 1px solid $alto;
         padding: 2px 5px;
         display: block;
         width: 100%;
@@ -44,7 +44,7 @@
     // Make border same as other Bolt inputs
     .select2-container--default .select2-selection--single,
     .select2-container--default .select2-selection--multiple {
-        border-color: #ccc;
+        border-color: $silver;
         border-radius: 2px;
     }
 }
@@ -56,22 +56,22 @@
 
     .select2-selection__choice {
         cursor: move !important;
-        border-color: #d0d0d0;
+        border-color: $alto;
         padding: 0px;
         display: block;
         width:100%;
         border-radius: 0px;
-        border-color: #d0d0d0;
+        border-color: $alto;
     }
 
     .select2-drop {
         border-radius: 0px;
     }
     .select2-container-multi.select2-container-active {
-        border-color: #646464;
+        border-color: $dove;
     }
     .select2-container-multi.select2-container-active .select2-choices {
-        border-color: #646464;
+        border-color: $dove;
     }
 
     .select2-container-multi .select2-choices .select2-search-choice {
@@ -85,11 +85,11 @@
     }
 
     .select2-results .select2-highlighted {
-        background: #2f73b6;
+        background: $shipe-cove;
     }
 
     .select2-drop-active {
-        border-color: #646464;
+        border-color: $dove;
     }
 
 }
