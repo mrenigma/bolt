@@ -3,11 +3,9 @@
 div[data-bolt-fieldset] {
     /*** Prefix / Postfix ***/
 
-    $prefix-postfix-color: #666;
-
     .prefix,
     .postfix {
-        color: $prefix-postfix-color;
+        color: $dove;
 
     }
 }
@@ -15,6 +13,6 @@ div[data-bolt-fieldset] {
 // The last container, just before save buttons.
 div[data-bolt-fieldset]:last-child,
 div[data-bolt-fieldset="meta"] {
-    border-bottom: 1px solid $light-border;
+    border-bottom: 1px solid $alto;
 
 }
