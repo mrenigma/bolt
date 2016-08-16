@@ -9,17 +9,17 @@ fieldset[class^='bolt-field-'] {
     /// Label
     label,
     .control-label {
-        color: #808080;
+        color: $dove;
     }
 
     // Main label
     label.main {
-        color: #282828;
+        color: $mine;
     }
 
     // Info popup
     .info-pop {
-        color: #bbb;
+        color: $alto;
     }
 }
 
@@ -29,53 +29,53 @@ fieldset.bolt-field-filelist,
 fieldset.bolt-field-imagelist {
     // Empty placeholder
     p {
-        color: #999;
+        color: $dove;
         font-style: italic;
     }
 
     .list {
-        border: 1px solid #e0e0e0;
-        background-color: #fff;
+        border: 1px solid $concrete;
+        background-color: $white;
         border-radius: 3px;
     }
 
     .item {
-        border: 2px solid #f0f0f0;
+        border: 2px solid $concrete;
         border-radius: 3px;
-        background: #f6f6f6;
+        background: $white;
 
         &.selected {
             border: 2px solid $btn-tertiary-bg;
         }
 
         &.zombie {
-            border: 2px solid #d00;
+            border: 2px solid $milano;
             opacity: 0.1;
         }
 
         input.title {
-            border: 1px solid #f0f0f0;
-            background-color:#fbfbfb;
+            border: 1px solid $concrete;
+            background-color: $white;
         }
 
         // Remove button
         a.remove {
-            color: #999;
+            color: $chalice;
             border-radius: 3px;
 
             &:hover {
-                background: #dcdcdc;
+                background: $concrete;
             }
         }
 
         // File description
         span.desc {
-            color: #aaa;
+            color: $alto;
         }
 
         //
         .icon {
-            color: #bbb;
+            color: $alto;
         }
     }
 }
