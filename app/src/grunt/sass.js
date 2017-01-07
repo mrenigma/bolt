@@ -8,7 +8,7 @@ module.exports = {
     boltCss: {
         options: {
             includePaths: [
-                '<%= path.src.npm %>/bootstrap-sass/assets/stylesheets/',
+                '<%= path.src.npm %>/bootstrap/',
                 '<%= path.src.npm %>/font-awesome/scss/'
             ],
             lineNumbers: false,

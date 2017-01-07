@@ -31,6 +31,7 @@ module.exports = {
                 '<%= path.src.npm %>/jquery.tagcloud.js/jquery.tagcloud.js',
                 '<%= path.src.npm %>/bootbox/bootbox.js',
                 '<%= path.src.npm %>/magnific-popup/dist/jquery.magnific-popup.js',
+                '<%= path.src.npm %>/tether/dist/js/tether.js',
                 '<%= path.src.npm %>/moment/moment.js',
                 '<%= path.src.lib %>/select2-ext/select2.sortable.js'
             ],
@@ -145,14 +146,15 @@ module.exports = {
         },
         files: {
             '<%= path.tmp %>/bootstrap.min.js': [
-                '<%= path.src.npm %>/bootstrap-sass/assets/javascripts/bootstrap/alert.js',
-                '<%= path.src.npm %>/bootstrap-sass/assets/javascripts/bootstrap/button.js',
-                '<%= path.src.npm %>/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js',
-                '<%= path.src.npm %>/bootstrap-sass/assets/javascripts/bootstrap/tab.js',
-                '<%= path.src.npm %>/bootstrap-sass/assets/javascripts/bootstrap/transition.js',
-                '<%= path.src.npm %>/bootstrap-sass/assets/javascripts/bootstrap/modal.js',
-                '<%= path.src.npm %>/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js',
-                '<%= path.src.npm %>/bootstrap-sass/assets/javascripts/bootstrap/popover.js'
+                '<%= path.src.npm %>/bootstrap/js/dist/util.js',
+                '<%= path.src.npm %>/bootstrap/js/dist/alert.js',
+                '<%= path.src.npm %>/bootstrap/js/dist/button.js',
+                '<%= path.src.npm %>/bootstrap/js/dist/dropdown.js',
+                '<%= path.src.npm %>/bootstrap/js/dist/tab.js',
+                '<%= path.src.npm %>/bootstrap/js/dist/transition.js',
+                '<%= path.src.npm %>/bootstrap/js/dist/modal.js',
+                '<%= path.src.npm %>/bootstrap/js/dist/tooltip.js',
+                '<%= path.src.npm %>/bootstrap/js/dist/popover.js'
             ]
         }
     },

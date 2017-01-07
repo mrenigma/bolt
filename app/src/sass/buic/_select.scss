@@ -23,7 +23,7 @@
             button {
                 // btn-default + btn-xs
                 @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
-                @include button-size($padding-xs-vertical, $padding-xs-vertical, $font-size-small, $line-height-small, $btn-border-radius-small);
+                @include button-size(1px, 1px, $small-font-size, $btn-border-radius-sm);
 
                 margin-left: 6px;
                 margin-top: 4px;
@@ -35,7 +35,7 @@
                 &::before {
                     font-family: FontAwesome;
                     display: block;
-                    width: $font-size-small * $line-height-small; // Make it quadratic (15px * 1.5)
+                    width: $small-font-size * $line-height-sm; // Make it quadratic (15px * 1.5)
                 }
 
                 &.select-all::before {

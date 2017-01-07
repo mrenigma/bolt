@@ -12,55 +12,55 @@ $navbar-padding-horizontal: 0;
  * We do seperate imports here, instead of just importing 'bootstrap.scss', because we do not need
  * all of the components.
  */
-// Core variables and mixins.
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
 
-// Reset.
-@import "bootstrap/normalize";
-@import "bootstrap/print";
+// Core variables and mixins
+@import "scss/variables";
+@import "scss/mixins";
+@import "scss/custom";
 
-// Core CSS.
-@import "bootstrap/scaffolding";
-@import "bootstrap/type";
-@import "bootstrap/code";
-@import "bootstrap/grid";
-@import "bootstrap/tables";
-@import "bootstrap/forms";
-@import "bootstrap/buttons";
+// Reset and dependencies
+@import "scss/normalize";
+@import "scss/print";
 
-// Components.
-// @import "bootstrap/component-animations"; Turned of 20-09-2016
-// @import "bootstrap/glyphicons";
-@import "bootstrap/dropdowns";
-@import "bootstrap/button-groups";
-@import "bootstrap/input-groups";
-@import "bootstrap/navs";
-@import "bootstrap/navbar";
-// @import "bootstrap/breadcrumbs"; Turned of 20-09-2016
-@import "bootstrap/pagination";
-@import "bootstrap/pager";
-@import "bootstrap/labels";
-@import "bootstrap/badges";
-// @import "bootstrap/jumbotron";
-// @import "bootstrap/thumbnails";
-@import "bootstrap/alerts";
-// @import "bootstrap/progress-bars"; Turned of 20-09-2016
-@import "bootstrap/media";
-@import "bootstrap/list-group";
-@import "bootstrap/panels";
-// @import "bootstrap/wells"; Turned of 20-09-2016
-@import "bootstrap/close";
+// Core CSS
+@import "scss/reboot";
+@import "scss/type";
+@import "scss/images";
+@import "scss/code";
+@import "scss/grid";
+@import "scss/tables";
+@import "scss/forms";
+@import "scss/buttons";
 
-// Components w/ JavaScript.
-@import "bootstrap/modals";
-@import "bootstrap/tooltip";
-@import "bootstrap/popovers";
-// @import "bootstrap/carousel";
+// Components
+@import "scss/transitions";
+@import "scss/dropdown";
+@import "scss/button-group";
+@import "scss/input-group";
+@import "scss/custom-forms";
+@import "scss/nav";
+@import "scss/navbar";
+@import "scss/card";
+@import "scss/breadcrumb";
+@import "scss/pagination";
+@import "scss/badge";
+@import "scss/jumbotron";
+@import "scss/alert";
+@import "scss/progress";
+@import "scss/media";
+@import "scss/list-group";
+@import "scss/responsive-embed";
+@import "scss/close";
 
-// Utility classes.
-@import "bootstrap/utilities";
-@import "bootstrap/responsive-utilities";
+// Components w/ JavaScript
+@import "scss/modal";
+@import "scss/tooltip";
+@import "scss/popover";
+@import "scss/carousel";
+
+// Utility classes
+@import "scss/utilities";
+
 
 /**
  * External resource: Font Awesome.
