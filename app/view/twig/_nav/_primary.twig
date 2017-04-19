@@ -1,67 +1,77 @@
-<div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-xaction="bolt.sidebar.toggle()">
-        <i class="fa fa-fw fa-bars"></i> MENU
-    </button>
-    <a class="navbar-brand" href="{{ path('dashboard') }}">
-        {# <img src="{{ asset('img/bolt-icon.svg', 'bolt') }}"> #}
-        {{ app.config.get('general/branding/name')|default('Bolt') }}
-    </a>
-    <a href="{{ path('dashboard') }}" class="navbar-site hidden-xs"><span>{% if app.config.get('general/sitename') %}{{ app.config.get('general/sitename') }}{% else %}Site{% endif %}</span></a>
-</div>
+<nav id="navpage-primary" class="navbar navbar-static-top navbar-inverse navbar-bolt">
 
+    <div>
+        <button type="button" class="navbar-toggle" data-xaction="bolt.sidebar.toggle()">
+            <i class="fa fa-fw fa-bars"></i> MENU
+        </button>
+    </div>
 
-<ul class="nav navbar-top-links navbar-right">
-
-    <li>
-        {# one omnisearch here, for "small and up", the other in the side-navbar #}
-        <form class="navbar-form hidden-xs">
-            <div class="form-group has-feedback omnisearch" role="search">
-                <select class="form-control" data-omnisearch-url="{{ path('omnisearch') }}"></select>
-                <span class="form-control-feedback"><i class="fa fa-search"></i></span>
-            </div>
-        </form>
-    </li>
-
-    <li>
-        <a href="{{ path('homepage') }}" target="_blank" class="hidden-xs">
-            <i class="fa fa-fw fa-external-link-square"></i>
-            {{ __('general.phrase.view-site') }}
+    <div>
+        <a class="navbar-brand" href="{{ path('dashboard') }}">
+            <img src="{{ asset('img/bolt-icon.svg', 'bolt') }}">
+            {{ app.config.get('general/branding/name')|default('Bolt') }}
         </a>
-    </li>
+        <a href="{{ path('dashboard') }}" class="navbar-site hidden-xs"><span>{% if app.config.get('general/sitename') %}{{ app.config.get('general/sitename') }}{% else %}Site{% endif %}</span></a>
+    </div>
 
-    {% if context.contenttype is defined %}
-    <li id="liveeditorsavecontinuebutton" class="save-live-editor">
-        <a>
-            <i class="fa fa-fw fa-flag"></i>
-            {{ __('contenttypes.generic.save', {'%contenttype%': context.contenttype.slug}) }}
-        </a>
-    </li>
-    {% endif %}
 
-    <li class="close-live-editor">
-        <a>
-            <i class="fa fa-fw fa-times-circle-o"></i>
-            {{ __('general.phrase.close-editor') }}
-        </a>
-    </li>
+    <div class="flex-spacer">
+        {# spacer #}
+    </div>
 
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            {# FIXME DTO: When the session hits the check timer, the user object can be empty #}
-            <i class="fa fa-fw fa-user"></i> <span>{{ user.displayname|default()|excerpt(16) }}</span> <i class="fa fa-caret-down"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-user" role="menu" >
-            <li>
+    <div>
+           {# one omnisearch here, for "small and up", the other in the side-navbar #}
+           <form class="navbar-form hidden-xs">
+                {#<div clsass="form-group has-feedback omnisearch" role="search">#}
+                    {#<select class="form-control" data-omnisearch-url="{{ path('omnisearch') }}"></select>#}
+                    {#<span class="form-control-feedback"><i class="fa fa-search"></i></span>#}
+                    <input type="text" placeholder="Omnisearch">
+                {#</div>#}
+            </form>
+    </div>
+
+
+    <div>
+            <a href="{{ path('homepage') }}" target="_blank" class="btn btn-tertiary hidden-xs">
+                <i class="fa fa-fw fa-external-link-square"></i>
+                {{ __('general.phrase.view-site') }}
+            </a>
+    </div>
+
+
+    <div>
+        <div class="dropdown">
+            <a class="btn btn-tertiary dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {# FIXME DTO: When the session hits the check timer, the user object can be empty #}
+                <i class="fa fa-fw fa-user"></i>
+                <span>{{ user.displayname|default()|excerpt(16) }}</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownProfile">
                 <a href="{{ path('profile') }}" role="menuitem" tabindex="-1"><i class="fa fa-fw fa-gear"></i> {{ __('general.phrase.profile') }}</a>
-            </li>
-            <li>
                 <form action="{{ path('logout') }}" method="POST">
                     <button class="btn btn-link btn-block" type="submit">
                         <span class="pull-left"><i class="fa fa-fw fa-sign-out" style="margin-left: 4px;"></i> {{ __('general.phrase.logout') }}</span>
                     </button>
                 </form>
-            </li>
-        </ul>
-    </li>
+            </div>
+        </div>
+    </div>
 
-</ul>
+</nav>
+{# Deprecated: buttons for "live editor" ------
+        {% if context.contenttype is defined %}
+        <li id="liveeditorsavecontinuebutton" class="save-live-editor">
+            <a>
+                <i class="fa fa-fw fa-flag"></i>
+                {{ __('contenttypes.generic.save', {'%contenttype%': context.contenttype.slug}) }}
+            </a>
+        </li>
+        {% endif %}
+
+        <li class="close-live-editor">
+            <a>
+                <i class="fa fa-fw fa-times-circle-o"></i>
+                {{ __('general.phrase.close-editor') }}
+            </a>
+        </li>
+-------------------#}

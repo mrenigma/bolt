@@ -22,8 +22,6 @@
     left: -$nav-secondary-small-width;
     transition: left 0.1s, width 0.1s;
     box-shadow: -5px 0 0 rgba(0, 0, 0, 0.15) inset;
-    background: $sidebarbackground;
-    color: $sidebartextcolour;
     font-size: 120%;
 
     ul.submenu {
@@ -108,7 +106,6 @@
             width: $nav-secondary-large-width;
             overflow: visible;
             box-shadow: 8px 0px 0px rgba(0, 0, 0, 0.2);
-            color: $sidebartextcolour;
 
             .nav > li {
                 a {
