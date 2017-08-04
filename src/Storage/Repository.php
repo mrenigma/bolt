@@ -10,16 +10,20 @@ use Bolt\Storage\Entity\Builder;
 use Bolt\Storage\Entity\Entity;
 use Bolt\Storage\Field\Type\FieldTypeInterface;
 use Bolt\Storage\Mapping\ClassMetadata;
+use Bolt\Storage\Mapping\ContentType;
 use Bolt\Storage\Query\QueryInterface;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
+use Bolt\Controller\HierarchicalContentTrait;
 
 /**
  * A default repository class that other repositories can inherit to provide more specific features.
  */
 class Repository implements ObjectRepository
 {
+    use HierarchicalContentTrait;
+
     /** @var EntityManager */
     public $em;
     /** @var ClassMetadata */
@@ -464,6 +468,25 @@ class Repository implements ObjectRepository
         $this->event()->dispatch(StorageEvents::PRE_HYDRATE, $preEventArgs);
 
         $this->getEntityBuilder()->createFromDatabaseValues($data, $entity);
+
+        $content_type = $entity->getContenttype();
+
+        // SBTODO: What to do with this?
+        if ($content_type instanceof ContentType) {
+            $is_hierarchical = $content_type->offsetGet('hierarchical');
+
+            if ($is_hierarchical === true) {
+                $content_type_fields = $content_type->getFields();
+                $parent              = $entity->offsetGet('parent');
+
+                if (!empty($parent) && !empty($content_type_fields) && isset($content_type_fields['slug'])) {
+                    $content_type_fields['slug']['route_prefix'] = $this->getRoutePrefix($content_type->offsetGet('slug'), $parent);
+
+                    $content_type->offsetSet('fields', $content_type_fields);
+                    $entity->setContenttype($content_type);
+                }
+            }
+        }
 
         $postEventArgs = new HydrationEvent($entity, ['entity' => $entity, 'data' => $data, 'repository' => $this]);
         $this->event()->dispatch(StorageEvents::POST_HYDRATE, $postEventArgs);

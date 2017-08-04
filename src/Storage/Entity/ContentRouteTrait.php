@@ -5,6 +5,7 @@ namespace Bolt\Storage\Entity;
 use Bolt\Legacy\AppSingleton;
 use Silex\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Bolt\Controller\HierarchicalContentTrait;
 
 /**
  * Trait class for ContentType routing.
@@ -22,6 +23,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 trait ContentRouteTrait
 {
+    use HierarchicalContentTrait;
+
     /**
      * Creates a link to EDIT this record, if the user is logged in.
      *
@@ -51,7 +54,26 @@ trait ContentRouteTrait
         /** @var UrlGeneratorInterface $urlGenerator */
         $urlGenerator = $this->app['url_generator'];
 
-        return $name ? $urlGenerator->generate($name, $params, $referenceType) : null;
+        $link = null;
+
+        if ($name) {
+            $link = $urlGenerator->generate($name, $params, $referenceType);
+        }
+
+        $contentType = $this->contenttype;
+
+        if (isset($contentType['hierarchical']) && $contentType['hierarchical'] === true && !is_null($link)) {
+            $new_link = $this->getHierarchicalPath($contentType['slug'], $this->get('id'));
+            $replace  = '/' . $this->get('slug');
+
+            if (strpos($new_link, '/' . $contentType['slug']) !== false) {
+                $replace = '/' . $contentType['singular_slug'] . $replace;
+            }
+
+            return str_replace($replace, $new_link, $link);
+        }
+
+        return $link;
     }
 
     /**
@@ -137,6 +159,18 @@ trait ContentRouteTrait
 
         // First, try to find a custom route that's applicable
         foreach ($allroutes as $binding => $config) {
+            if ($this->isExplicitRoute($config)) {
+                return [$binding,$config];
+            }
+
+            if (!empty($route['exact'])) {
+                continue;
+            }
+
+            if ($this->isTaxonomyRoute($config)) {
+                return [$binding,$config];
+            }
+
             if ($this->isApplicableRoute($config)) {
                 return [$binding, $config];
             }
@@ -189,6 +223,38 @@ trait ContentRouteTrait
     }
 
     /**
+     * Check if a route is explicitly for this record.
+     *
+     * @param array $route
+     *
+     * @return boolean
+     */
+    protected function isExplicitRoute(array $route)
+    {
+        $content_type_matches = (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['singular_slug']) || (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['slug']) || (isset($route['recordslug']) && $route['recordslug'] === $this->getReference());
+
+        $content_type_path = (isset($route['path']) && strpos($route['path'], '/' . $this->get('slug')) !== false);
+
+        return ($content_type_matches && $content_type_path);
+    }
+
+    /**
+     * Check if a route matches up to the taxonomies and contenttype for this record.
+     *
+     * @param array $route
+     *
+     * @return boolean
+     */
+    protected function isTaxonomyRoute(array $route)
+    {
+        $content_type_matches = (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['singular_slug']) || (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['slug']) || (isset($route['recordslug']) && $route['recordslug'] === $this->getReference());
+
+        $params = array_filter($this->getRouteRequirementParams($route));
+
+        return ($content_type_matches && !empty($params));
+    }
+
+    /**
      * Check if a route is applicable to this record.
      *
      * @param array $route
@@ -197,9 +263,7 @@ trait ContentRouteTrait
      */
     protected function isApplicableRoute(array $route)
     {
-        return (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['singular_slug'])
-            || (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['slug'])
-            || (isset($route['recordslug']) && $route['recordslug'] === $this->getReference());
+        return (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['singular_slug']) || (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['slug']) || (isset($route['recordslug']) && $route['recordslug'] === $this->getReference());
     }
 
     /**

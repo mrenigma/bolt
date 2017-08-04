@@ -2,11 +2,16 @@
 
 namespace Bolt\Controller\Backend;
 
+use Bolt\Asset\File\JavaScript;
+use Bolt\Asset\Snippet\Snippet;
+use Bolt\Asset\Target;
+use Bolt\Controller\Zone;
 use Bolt\Exception\InvalidRepositoryException;
 use Bolt\Storage\ContentRequest\ListingOptions;
 use Bolt\Translation\Translator as Trans;
 use Silex\ControllerCollection;
 use Symfony\Component\HttpFoundation\Request;
+use Bolt\Controller\HierarchicalContentTrait;
 
 /**
  * Backend controller for record manipulation routes.
@@ -18,6 +23,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class Records extends BackendBase
 {
+    use HierarchicalContentTrait;
+
     protected function addRoutes(ControllerCollection $c)
     {
         $c->method('GET|POST');
@@ -98,6 +105,30 @@ class Records extends BackendBase
         $referrer = $this->getEditReferrer($request);
         if ($referrer) {
             $content['editreferrer'] = $referrer;
+        }
+
+        // SBTODO: What to do with this?
+        if (isset($contentType['hierarchical']) && $contentType['hierarchical'] === true) {
+            // SBTODO: Move this JS file into core JS?
+            $jsFile = (new JavaScript('js/parent-change.js', 'bolt'))
+                ->setZone(Zone::BACKEND)
+                ->setLate(true);
+
+            $snippet = (new Snippet())
+                ->setCallback('<script>var hierarchies = JSON.parse(\'' . json_encode($this->getAllHierarchies($contenttypeslug, false),
+                    JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) . '\');</script>')
+                ->setZone(Zone::BACKEND)
+                ->setLocation(Target::BEFORE_HEAD_JS);
+
+            $this->app['asset.queue.file']->add($jsFile);
+            $this->app['asset.queue.snippet']->add($snippet);
+        }
+
+        // Lets delete the hierarchies cache if we're saving this record
+        $cacheKey = '_hierarchies_' . $contenttypeslug;
+
+        if ($request->query->has('returnto') && $this->app['cache']->contains($cacheKey)) {
+            $this->app['cache']->delete($cacheKey);
         }
 
         return $this->render('@bolt/editcontent/editcontent.twig', $context);

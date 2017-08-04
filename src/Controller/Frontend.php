@@ -13,6 +13,7 @@ use Silex\ControllerCollection;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Bolt\Controller\HierarchicalContentTrait;
 
 /**
  * Standard Frontend actions.
@@ -25,6 +26,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Frontend extends ConfigurableBase
 {
+    use HierarchicalContentTrait;
+
     protected function getConfigurationRoutes()
     {
         return $this->app['config']->get('routing', []);
@@ -147,10 +150,15 @@ class Frontend extends ConfigurableBase
             $slug = $request->get('id');
         }
 
-        $slug = $this->app['slugify']->slugify($slug);
+        // Is this a hierarchical contentType?
+        if (isset($contenttype['hierarchical']) && $contenttype['hierarchical'] === true) {
+            $content = $this->getHierarchicalContent($contenttype['slug'], $slug, true);
+        } else {
+            $slug = $this->app['slugify']->slugify($slug);
 
-        // First, try to get it by slug.
-        $content = $this->getContent($contenttype['slug'], ['slug' => $slug, 'returnsingle' => true, 'log_not_found' => !is_numeric($slug)]);
+            // First, try to get it by slug.
+            $content = $this->getContent($contenttype['slug'], ['slug' => $slug, 'returnsingle' => true, 'log_not_found' => !is_numeric($slug)]);
+        }
 
         if (!$content && is_numeric($slug)) {
             // And otherwise try getting it by ID
