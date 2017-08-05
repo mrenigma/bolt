@@ -28,7 +28,11 @@
         >
     {% endif %}
         <table class="{{ extra_classes }} dashboardlisting listing">
+            {% set counter = 0 %}
             {% for content in multiplecontent %}
+                {% if content.parent is empty or content.parent == 0 %}
+                    {% set counter = counter + 1 %}
+                {% endif %}
                 {% set editable = permissions.edit %}
                 {% if editable %}
                     {% set any_editable = true %}
