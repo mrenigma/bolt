@@ -131,6 +131,10 @@ row_header:     prop.extended and (prop.first or (prop.has_groupname and prop.ne
  # DATA ROW
  #}
 {% if content.parent is empty or content.parent == 0 %}
+    {% if counter is not defined %}
+        {% set counter = 0 %}
+    {% endif %}
+
     {% set colour = cycle(['odd', 'even'], counter) %}
     <tr class="{{ colour }}{% if content.status!='published' %}dim{% endif %}"{% if modifiable %} id="item_{{ content.id }}"{% endif %}>
 
@@ -322,7 +326,7 @@ row_header:     prop.extended and (prop.first or (prop.has_groupname and prop.ne
         {% endblock %}
     </tr>
 
-    {{ sub_items_list(contenttype, content.id, permissions, '-', colour, compact, thumbsize) }}
+    {{ sub_items_list(content, permissions, '-', colour, compact, thumbsize) }}
 {% endif %}
 
 {% if prop.last %}

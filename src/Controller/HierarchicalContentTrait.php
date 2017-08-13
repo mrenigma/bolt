@@ -14,6 +14,7 @@ trait HierarchicalContentTrait
 
     private function getPathArray($slug)
     {
+
         $slug              = trim($slug, '/');
         $this->path_pieces = explode('/', $slug);
 
@@ -22,11 +23,13 @@ trait HierarchicalContentTrait
 
     private function getContentWrapper($contentType, $params = [], $additionalParams = [])
     {
+
         return $this->app['storage']->getContent($contentType, $params, $this->app['pager'], $additionalParams);
     }
 
     private function getContentByIdAndParent($contentType, $id, $parent, $hydrate = false)
     {
+
         $id = $this->app['slugify']->slugify($id);
 
         return $this->getContentWrapper($contentType, [
@@ -39,6 +42,7 @@ trait HierarchicalContentTrait
 
     private function getContentBySlugAndParent($contentType, $slug, $parent, $hydrate = false)
     {
+
         $slug = $this->app['slugify']->slugify($slug);
 
         return $this->getContentWrapper($contentType, [
@@ -51,6 +55,7 @@ trait HierarchicalContentTrait
 
     private function getContentById($contentType, $id, $hydrate = false)
     {
+
         $id = $this->app['slugify']->slugify($id);
 
         return $this->getContentWrapper($contentType, [
@@ -63,6 +68,7 @@ trait HierarchicalContentTrait
 
     private function getContentBySlug($contentType, $slug, $hydrate = false)
     {
+
         $slug = $this->app['slugify']->slugify($slug);
 
         return $this->getContentWrapper($contentType, [
@@ -75,6 +81,7 @@ trait HierarchicalContentTrait
 
     public function getChildContent($contentType, $parent_id, $hydrate = false, $order = 'datepublish')
     {
+
         return $this->getContentWrapper($contentType, [
             'parent'       => $parent_id,
             'order'        => $order,
@@ -85,6 +92,7 @@ trait HierarchicalContentTrait
 
     private function getHierarchicalContent($contentType, $slug, $hydrate = false)
     {
+
         $this->getPathArray($slug);
 
         // This used to be = ''; but changed to null due to how the DB was behaving
@@ -129,6 +137,7 @@ trait HierarchicalContentTrait
 
     public function getHierarchicalPathArray($contentType, $slug, $hydrate = false)
     {
+
         if (is_object($slug)) {
             /**
              * @var Content $result
@@ -165,6 +174,7 @@ trait HierarchicalContentTrait
 
     public function getHierarchicalIDArray($contentType, $slug, $hydrate = false)
     {
+
         if (is_object($slug)) {
             /**
              * @var Content $result
@@ -201,6 +211,7 @@ trait HierarchicalContentTrait
 
     public function getHierarchicalPath($contentType, $content, $hydrate = false)
     {
+
         $path   = $this->getHierarchicalPathArray($contentType, $content, $hydrate);
         $prefix = $this->app['config']->get('contenttypes/' . $contentType . '/hierarchical_prefix');
 
@@ -227,6 +238,7 @@ trait HierarchicalContentTrait
 
     public function getRootParentSlug($contentType, $slug, $hydrate = false)
     {
+
         $parent = false;
         $path   = $this->getHierarchicalPathArray($contentType, $slug, $hydrate);
 
@@ -239,6 +251,7 @@ trait HierarchicalContentTrait
 
     public function getRootParentID($contentType, $slug, $hydrate = false)
     {
+
         $parent = false;
         $path   = $this->getHierarchicalIDArray($contentType, $slug, $hydrate);
 
@@ -251,6 +264,7 @@ trait HierarchicalContentTrait
 
     public function getRoutePrefix($contentType, $parent, $hydrate = false)
     {
+
         /**
          * @var Content $result
          */
@@ -274,6 +288,7 @@ trait HierarchicalContentTrait
 
     public function getAllHierarchies($contentType, $bySlug = true, $hydrate = false)
     {
+
         $cacheKey = '_hierarchies_' . $contentType;
 
         if ($this->app['cache']->contains($cacheKey)) {
@@ -316,7 +331,9 @@ trait HierarchicalContentTrait
 
     private function sortByKeyAndParent($array, $asc = true)
     {
+
         usort($array, function ($a, $b) {
+
             return strnatcmp($a['path'], $b['path']);
         });
 
@@ -329,6 +346,7 @@ trait HierarchicalContentTrait
 
     private function fillContent($contentType, $content)
     {
+
         $array = $content;
 
         /**

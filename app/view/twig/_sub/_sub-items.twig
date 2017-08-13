@@ -1,10 +1,10 @@
-{% macro sub_items_list(contenttype, parent_id, permissions, depth, colour, compact, thumbsize) %}
+{% macro sub_items_list(content, permissions, depth, colour, compact, thumbsize) %}
     {% import '@bolt/_macro/_macro.twig' as macro %}
     {% from '@bolt/_buic/_moment.twig' import buic_moment %}
 
-    {% if contenttype.hierarchical %}
+    {% if content.contenttype.hierarchical is defined and content.contenttype.hierarchical %}
         {# Get child records #}
-        {% setcontent sub_items = contenttype.slug where { 'parent': parent_id } %}
+        {% setcontent sub_items = content.contenttype.slug where { 'parent': content.id } %}
 
         {% if sub_items is not empty %}
             {% for sub_item in sub_items %}
@@ -223,7 +223,7 @@
                                 {% endblock %}
                             </tr>
 
-                            {{ _self.sub_items_list(sub_item.contenttype, sub_item.id, permissions, depth~'-', colour, compact, thumbsize) }}
+                            {{ _self.sub_items_list(sub_item, permissions, depth~'-', colour, compact, thumbsize) }}
                         </table>
                     </td>
                 </tr>
