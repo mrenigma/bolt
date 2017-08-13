@@ -7,18 +7,18 @@ use Bolt\Storage\Entity\Content;
 trait HierarchicalContentTrait
 {
 
-    private $path_pieces = [];
-    private $parent_tree = [];
-    private $last_result = false;
-    private $route_prefix = '/';
+    private $pathPieces = [];
+    private $parentTree = [];
+    private $lastResult = false;
+    private $routePrefix = '/';
 
     private function getPathArray($slug)
     {
 
-        $slug              = trim($slug, '/');
-        $this->path_pieces = explode('/', $slug);
+        $slug             = trim($slug, '/');
+        $this->pathPieces = explode('/', $slug);
 
-        return $this->path_pieces;
+        return $this->pathPieces;
     }
 
     private function getContentWrapper($contentType, $params = [], $additionalParams = [])
@@ -79,11 +79,11 @@ trait HierarchicalContentTrait
         ]);
     }
 
-    public function getChildContent($contentType, $parent_id, $hydrate = false, $order = 'datepublish')
+    public function getChildContent($contentType, $parentId, $hydrate = false, $order = 'datepublish')
     {
 
         return $this->getContentWrapper($contentType, [
-            'parent'       => $parent_id,
+            'parent'       => $parentId,
             'order'        => $order,
             'returnsingle' => false,
             'hydrate'      => $hydrate
@@ -96,35 +96,35 @@ trait HierarchicalContentTrait
         $this->getPathArray($slug);
 
         // This used to be = ''; but changed to null due to how the DB was behaving
-        $last_parent_id = null;
+        $lastParentId = null;
 
-        if (count($this->path_pieces)) {
-            foreach ($this->path_pieces as $slug) {
+        if (count($this->pathPieces)) {
+            foreach ($this->pathPieces as $slug) {
                 /**
                  * @var Content $result
                  */
-                $result = $this->getContentBySlugAndParent($contentType, $slug, $last_parent_id, $hydrate);
+                $result = $this->getContentBySlugAndParent($contentType, $slug, $lastParentId, $hydrate);
 
                 if (!$result instanceof Content && is_numeric($slug)) {
                     /**
                      * @var Content $result
                      */
-                    $result = $this->getContentByIdAndParent($contentType, $slug, $last_parent_id, $hydrate);
+                    $result = $this->getContentByIdAndParent($contentType, $slug, $lastParentId, $hydrate);
                 }
 
                 if ($result instanceof Content) {
-                    $this->parent_tree[] = [
+                    $this->parentTree[] = [
                         'id'   => $result['id'],
                         'slug' => $slug
                     ];
 
-                    $this->last_result = $result;
+                    $this->lastResult = $result;
 
-                    $last_parent_id = $result['id'];
+                    $lastParentId = $result['id'];
                 } else {
                     // Parent page doesn't exist, the URL is invalid -> Clear parent_tree
-                    $this->parent_tree = [];
-                    $this->last_result = false;
+                    $this->parentTree = [];
+                    $this->lastResult = false;
 
                     // Don't carry on with the loop, the URL is invalid
                     break;
@@ -132,13 +132,13 @@ trait HierarchicalContentTrait
             }
         }
 
-        return $this->last_result;
+        return $this->lastResult;
     }
 
     public function getHierarchicalPathArray($contentType, $slug, $hydrate = false)
     {
 
-        if (is_object($slug)) {
+        if (is_object($slug) && $slug instanceof Content) {
             /**
              * @var Content $result
              */
@@ -158,24 +158,24 @@ trait HierarchicalContentTrait
         }
 
         if ($result instanceof Content) {
-            $this->path_pieces[] = $result->offsetGet('slug');
-            $parent_id           = $result->offsetGet('parent');
+            $this->pathPieces[] = $result->offsetGet('slug');
+            $parentId           = $result->offsetGet('parent');
 
-            if (!empty($parent_id)) {
-                $this->path_pieces = $this->getHierarchicalPathArray($contentType, $parent_id, $hydrate);
+            if (!empty($parentId)) {
+                $this->pathPieces = $this->getHierarchicalPathArray($contentType, $parentId, $hydrate);
             }
         }
 
-        $path_pieces       = $this->path_pieces;
-        $this->path_pieces = [];
+        $pathPieces       = $this->pathPieces;
+        $this->pathPieces = [];
 
-        return $path_pieces;
+        return $pathPieces;
     }
 
     public function getHierarchicalIDArray($contentType, $slug, $hydrate = false)
     {
 
-        if (is_object($slug)) {
+        if (is_object($slug) && $slug instanceof Content) {
             /**
              * @var Content $result
              */
@@ -195,18 +195,18 @@ trait HierarchicalContentTrait
         }
 
         if ($result instanceof Content) {
-            $this->path_pieces[] = $result->offsetGet('id');
-            $parent_id           = $result->offsetGet('parent');
+            $this->pathPieces[] = $result->offsetGet('id');
+            $parentId           = $result->offsetGet('parent');
 
-            if (!empty($parent_id)) {
-                $this->path_pieces = $this->getHierarchicalIDArray($contentType, $parent_id, $hydrate);
+            if (!empty($parentId)) {
+                $this->pathPieces = $this->getHierarchicalIDArray($contentType, $parentId, $hydrate);
             }
         }
 
-        $path_pieces       = $this->path_pieces;
-        $this->path_pieces = [];
+        $pathPieces       = $this->pathPieces;
+        $this->pathPieces = [];
 
-        return $path_pieces;
+        return $pathPieces;
     }
 
     public function getHierarchicalPath($contentType, $content, $hydrate = false)
@@ -271,17 +271,17 @@ trait HierarchicalContentTrait
         $result = $this->getContentById($contentType, $parent, $hydrate);
 
         if ($result instanceof Content) {
-            $result_parent = $result->offsetGet('parent');
-            $result_slug   = $result->offsetGet('slug');
+            $resultParent = $result->offsetGet('parent');
+            $resultSlug   = $result->offsetGet('slug');
 
-            $this->route_prefix = '/' . $result_slug . $this->route_prefix;
+            $this->routePrefix = '/' . $resultSlug . $this->routePrefix;
 
             if ($result->offsetGet('parent')) {
-                return $this->getRoutePrefix($contentType, $result_parent, $hydrate);
+                return $this->getRoutePrefix($contentType, $resultParent, $hydrate);
             } else {
-                $route_prefix = $this->route_prefix;
+                $routePrefix = $this->routePrefix;
 
-                return $route_prefix;
+                return $routePrefix;
             }
         }
     }

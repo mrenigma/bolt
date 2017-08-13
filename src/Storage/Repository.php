@@ -469,19 +469,19 @@ class Repository implements ObjectRepository
 
         $this->getEntityBuilder()->createFromDatabaseValues($data, $entity);
 
-        $content_type = $entity->getContenttype();
+        $contentType = $entity->getContenttype();
 
         // SBTODO: What to do with this?
-        if ($content_type instanceof ContentType) {
-            if ($content_type->offsetGet('hierarchical') === true) {
-                $content_type_fields = $content_type->getFields();
+        if ($contentType instanceof ContentType) {
+            if ($contentType->offsetGet('hierarchical') === true) {
+                $contentTypeFields = $contentType->getFields();
                 $parent              = $entity->offsetGet('parent');
 
-                if (!is_null($parent) && isset($content_type_fields['slug'])) {
-                    $content_type_fields['slug']['route_prefix'] = $this->getRoutePrefix($content_type->offsetGet('slug'), $parent);
+                if (!is_null($parent) && isset($contentTypeFields['slug'])) {
+                    $contentTypeFields['slug']['route_prefix'] = $this->getRoutePrefix($contentType->offsetGet('slug'), $parent);
 
-                    $content_type->offsetSet('fields', $content_type_fields);
-                    $entity->setContenttype($content_type);
+                    $contentType->offsetSet('fields', $contentTypeFields);
+                    $entity->setContenttype($contentType);
                 }
             }
         }

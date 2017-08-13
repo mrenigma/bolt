@@ -231,11 +231,11 @@ trait ContentRouteTrait
      */
     protected function isExplicitRoute(array $route)
     {
-        $content_type_matches = (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['singular_slug']) || (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['slug']) || (isset($route['recordslug']) && $route['recordslug'] === $this->getReference());
+        $contentTypeMatches = (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['singular_slug']) || (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['slug']) || (isset($route['recordslug']) && $route['recordslug'] === $this->getReference());
 
-        $content_type_path = (isset($route['path']) && strpos($route['path'], '/' . $this->get('slug')) !== false);
+        $contentTypePath = (isset($route['path']) && strpos($route['path'], '/' . $this->get('slug')) !== false);
 
-        return ($content_type_matches && $content_type_path);
+        return ($contentTypeMatches && $contentTypePath);
     }
 
     /**
@@ -247,11 +247,11 @@ trait ContentRouteTrait
      */
     protected function isTaxonomyRoute(array $route)
     {
-        $content_type_matches = (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['singular_slug']) || (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['slug']) || (isset($route['recordslug']) && $route['recordslug'] === $this->getReference());
+        $contentTypeMatches = (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['singular_slug']) || (isset($route['contenttype']) && $route['contenttype'] === $this->contenttype['slug']) || (isset($route['recordslug']) && $route['recordslug'] === $this->getReference());
 
         $params = array_filter($this->getRouteRequirementParams($route));
 
-        return ($content_type_matches && is_array($params) && count($params));
+        return ($contentTypeMatches && is_array($params) && count($params));
     }
 
     /**
