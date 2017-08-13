@@ -163,7 +163,7 @@ trait ContentRouteTrait
                 return [$binding,$config];
             }
 
-            if (!empty($route['exact'])) {
+            if (isset($config['exact']) && $config['exact'] === true) {
                 continue;
             }
 
@@ -251,7 +251,7 @@ trait ContentRouteTrait
 
         $params = array_filter($this->getRouteRequirementParams($route));
 
-        return ($content_type_matches && !empty($params));
+        return ($content_type_matches && is_array($params) && count($params));
     }
 
     /**

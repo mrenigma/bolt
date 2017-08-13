@@ -473,13 +473,11 @@ class Repository implements ObjectRepository
 
         // SBTODO: What to do with this?
         if ($content_type instanceof ContentType) {
-            $is_hierarchical = $content_type->offsetGet('hierarchical');
-
-            if ($is_hierarchical === true) {
+            if ($content_type->offsetGet('hierarchical') === true) {
                 $content_type_fields = $content_type->getFields();
                 $parent              = $entity->offsetGet('parent');
 
-                if (!empty($parent) && !empty($content_type_fields) && isset($content_type_fields['slug'])) {
+                if (!is_null($parent) && isset($content_type_fields['slug'])) {
                     $content_type_fields['slug']['route_prefix'] = $this->getRoutePrefix($content_type->offsetGet('slug'), $parent);
 
                     $content_type->offsetSet('fields', $content_type_fields);

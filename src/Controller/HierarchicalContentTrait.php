@@ -98,21 +98,21 @@ trait HierarchicalContentTrait
         // This used to be = ''; but changed to null due to how the DB was behaving
         $last_parent_id = null;
 
-        if (!empty($this->path_pieces)) {
+        if (count($this->path_pieces)) {
             foreach ($this->path_pieces as $slug) {
                 /**
                  * @var Content $result
                  */
                 $result = $this->getContentBySlugAndParent($contentType, $slug, $last_parent_id, $hydrate);
 
-                if (empty($result) && is_numeric($slug)) {
+                if (!$result instanceof Content && is_numeric($slug)) {
                     /**
                      * @var Content $result
                      */
                     $result = $this->getContentByIdAndParent($contentType, $slug, $last_parent_id, $hydrate);
                 }
 
-                if (!empty($result)) {
+                if ($result instanceof Content) {
                     $this->parent_tree[] = [
                         'id'   => $result['id'],
                         'slug' => $slug
@@ -150,14 +150,14 @@ trait HierarchicalContentTrait
             $result = $this->getContentBySlug($contentType, $slug, $hydrate);
         }
 
-        if (empty($result) && is_numeric($slug)) {
+        if (!$result instanceof Content && is_numeric($slug)) {
             /**
              * @var Content $result
              */
             $result = $this->getContentById($contentType, $slug, $hydrate);
         }
 
-        if (!empty($result)) {
+        if ($result instanceof Content) {
             $this->path_pieces[] = $result->offsetGet('slug');
             $parent_id           = $result->offsetGet('parent');
 
@@ -187,14 +187,14 @@ trait HierarchicalContentTrait
             $result = $this->getContentBySlug($contentType, $slug, $hydrate);
         }
 
-        if (empty($result) && is_numeric($slug)) {
+        if (!$result instanceof Content && is_numeric($slug)) {
             /**
              * @var Content $result
              */
             $result = $this->getContentById($contentType, $slug, $hydrate);
         }
 
-        if (!empty($result)) {
+        if ($result instanceof Content) {
             $this->path_pieces[] = $result->offsetGet('id');
             $parent_id           = $result->offsetGet('parent');
 
@@ -215,14 +215,14 @@ trait HierarchicalContentTrait
         $path   = $this->getHierarchicalPathArray($contentType, $content, $hydrate);
         $prefix = $this->app['config']->get('contenttypes/' . $contentType . '/hierarchical_prefix');
 
-        if (!empty($path)) {
+        if (is_array($path) && count($path)) {
             $path = trim(implode('/', array_reverse($path)), '/');
 
             if ($path !== '' || $path !== '/') {
                 $path = '/' . $path;
             }
 
-            if (!empty($prefix)) {
+            if (is_string($prefix) && $prefix !== '') {
                 $path = '/' . trim($prefix, '/') . $path;
             }
 
@@ -242,7 +242,7 @@ trait HierarchicalContentTrait
         $parent = false;
         $path   = $this->getHierarchicalPathArray($contentType, $slug, $hydrate);
 
-        if (!empty($path)) {
+        if (is_array($path) && count($path)) {
             $parent = array_pop($path);
         }
 
@@ -255,7 +255,7 @@ trait HierarchicalContentTrait
         $parent = false;
         $path   = $this->getHierarchicalIDArray($contentType, $slug, $hydrate);
 
-        if (!empty($path)) {
+        if (is_array($path) && count($path)) {
             $parent = array_pop($path);
         }
 
@@ -270,7 +270,7 @@ trait HierarchicalContentTrait
          */
         $result = $this->getContentById($contentType, $parent, $hydrate);
 
-        if (!empty($result)) {
+        if ($result instanceof Content) {
             $result_parent = $result->offsetGet('parent');
             $result_slug   = $result->offsetGet('slug');
 
@@ -304,7 +304,7 @@ trait HierarchicalContentTrait
 
         $hierarchy = [];
 
-        if (!empty($contents) && is_array($contents)) {
+        if (is_array($contents) && count($contents)) {
             foreach ($contents as $content) {
                 if (is_array($content)) {
                     $content = $this->fillContent($contentType, $content);
